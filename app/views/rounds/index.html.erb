@@ -1,0 +1,33 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Rounds</h1>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Result color</th>
+      <th>Jugadores</th>
+      <th>Apuestas</th>
+      <th>Dinero Apostado</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @rounds.each do |round| %>
+      <tr>
+        <td><%= round.result_color %></td>
+        <td><%= round.players.map(&:name).join(', ') %></td>
+        <td><%= round.round_details.map(&:chosen_color).join(', ') %></td>
+        <td><%= round.round_details.map(&:betted_money).join(', ') %></td>
+        <td><%= link_to 'Show', round %></td>
+        <td><%= link_to 'Edit', edit_round_path(round) %></td>
+        <td><%= link_to 'Destroy', round, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Round', new_round_path %>
