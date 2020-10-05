@@ -16,7 +16,29 @@ class Round < ApplicationRecord
     end
   end
   
+  #Cantidad de dinero segun apuesta 
   def total_amount_per_bet
-
+    
+    round_d=RoundDetail.where(round_id:self.id)
+    
+    round_d.each do|r|
+      if r.chosen_color === self.result_color
+        
+        if r.chosen_color==0
+          player = Player.find(r.player_id)
+          
+          w =r.betted_money*16
+          player.amount += w
+          player.save
+        else
+          player = Player.find(r.player_id)
+          w =r.betted_money*3
+          player.amount += w
+          player.save
+        end
+      end
+    end
   end
+
+
 end

@@ -10,11 +10,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_10_04_155206) do
+ActiveRecord::Schema.define(version: 2020_10_04_195141) do
 
   create_table "players", force: :cascade do |t|
     t.string "name"
-    t.float "money", default: 10000.0
+    t.float "amount", default: 10000.0
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

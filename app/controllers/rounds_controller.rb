@@ -29,7 +29,8 @@ class RoundsController < ApplicationController
     @players =Player.all
 
     RoundDetail.create_round_detail(@players,@round)
-    Player.round_winner(@players,@round)
+    @round.total_amount_per_bet
+   # Player.round_winner(@players,@round)
     respond_to do |format|
       if @round.save
         format.html { redirect_to @round, notice: 'Round was successfully created.' }
