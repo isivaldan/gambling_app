@@ -25,12 +25,13 @@ class RoundsController < ApplicationController
   # POST /rounds.json
   def create
     #@round = Round.new(round_params)
+    #crear apuesta manualmente
     @round = Round.random_bet
     @players =Player.all
 
     RoundDetail.create_round_detail(@players,@round)
-    @round.total_amount_per_bet
-   # Player.round_winner(@players,@round)
+    @round.total_amount_bet
+
     respond_to do |format|
       if @round.save
         format.html { redirect_to @round, notice: 'Round was successfully created.' }

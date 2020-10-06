@@ -2,11 +2,12 @@ class RoundDetail < ApplicationRecord
   belongs_to :player
   belongs_to :round
   enum chosen_color: [:verde, :rojo, :negro]
+#llamado a la API Weather Bit
+  @hot_weather = false
   def self.weather_api
     require 'uri'
     require 'net/http'
     require "json"
-    hot_weather = false
     url = URI("https://api.weatherbit.io/v2.0/forecast/daily?city=Santiago&key=a01895cdf39141f9a8a77e66aafbcca2")
     
     https = Net::HTTP.new(url.host, url.port)
@@ -25,9 +26,9 @@ class RoundDetail < ApplicationRecord
       temp.push(r["high_temp"]) 
     end
     if temp[6]>24
-      return hot_weather = true
+      return @hot_weather = true
     else
-      return hot_weather = true
+      return @hot_weather = false
     end
     
   end
@@ -35,7 +36,7 @@ class RoundDetail < ApplicationRecord
   def self.create_round_detail(players,round)
     players.each do |player|
       r = Random.new
-      if RoundDetail.weather_api==true
+      if @hot_weather==true
         if player.amount <= 1000 && player.amount !=0
           round_detail = RoundDetail.create(player_id:player.id,round_id:round.id,betted_money:player.amount,chosen_color:r.rand(0..2))
           

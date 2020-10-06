@@ -1,7 +1,8 @@
 class Round < ApplicationRecord
   has_many :round_details,dependent: :destroy
   has_many :players, :through => :round_details
-
+  
+ 
   enum result_color: [:verde, :rojo, :negro]
   # Elije el color para la nueva ronda
   def self.random_bet
@@ -17,7 +18,7 @@ class Round < ApplicationRecord
   end
   
   #Cantidad de dinero segun apuesta 
-  def total_amount_per_bet
+  def total_amount_bet
     
     round_d=RoundDetail.where(round_id:self.id)
     
@@ -39,6 +40,13 @@ class Round < ApplicationRecord
       end
     end
   end
+  #crear round con apuestas
+  def self.create_round
+    @round = Round.random_bet
+    @players =Player.all
 
+    RoundDetail.create_round_detail(@players,@round)
+    @round.total_amount_bet
+  end
 
 end
