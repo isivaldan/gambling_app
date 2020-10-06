@@ -3,12 +3,19 @@ Modelo
 
 ![Alt text](public/modelo.png?raw=true "Modelo")
 
-Para ejecutar el proyecto se necesita Rails 6.0.3 y ejecutar el comando
-$ bundle install
 
-Pata levantar el proyecto 
-$ bundle install
 
+
+## ➤ Para ejecutar el proyecto se necesita Rails 6.0.3 y ejecutar el comando
+
+```ruby
+$ bundle install
+```
+## ➤ Para levantar el proyecto
+
+```ruby
+$ rails s 
+```
 
 Tarea NNode:
 
