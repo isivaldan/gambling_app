@@ -1,5 +1,5 @@
 # README
-Modelo
+## ➤ Modelo
 
 ![Alt text](public/modelo.png?raw=true "Modelo")
 
@@ -16,6 +16,9 @@ $ bundle install
 ```ruby
 $ rails s 
 ```
+
+[![-----------------------------------------------------](https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/colored.png)](#reglas)
+
 
 Tarea NNode:
 
