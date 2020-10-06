@@ -1,5 +1,5 @@
 class Round < ApplicationRecord
-  has_many :round_details,dependent: :destroy
+  has_many :round_details, dependent: :destroy
   has_many :players, :through => :round_details
   
  

@@ -1,5 +1,5 @@
 class Player < ApplicationRecord
-  has_many :round_details,dependent: :destroy
+  has_many :round_details, dependent: :destroy
   has_many :rounds, :through => :round_details
   validates :name, presence: true
 #monto diario que reciben los jugadores

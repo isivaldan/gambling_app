@@ -18,3 +18,7 @@ apuesta, no recupera nada.
 * La ruleta entrega resultados con la misma probabilidad que los jugadores hacen apuestas, es
 decir, Verde 2%, Rojo 49% y Negro 49%.
 * Al final del día, todos los jugadores reciben $10.000.
+
+* Modelo
+
+![Alt text](public/modelo.png?raw=true "Modelo")

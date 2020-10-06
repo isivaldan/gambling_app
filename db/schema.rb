@@ -10,17 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_10_04_195141) do
+ActiveRecord::Schema.define(version: 2020_10_06_150504) do
 
   create_table "players", force: :cascade do |t|
     t.string "name"
-    t.float "amount", default: 10000.0
+    t.integer "amount", default: 10000
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "round_details", force: :cascade do |t|
-    t.float "betted_money"
+    t.integer "betted_money"
     t.integer "chosen_color"
     t.integer "player_id", null: false
     t.integer "round_id", null: false
