@@ -1,4 +1,14 @@
 # README
+Modelo
+
+![Alt text](public/modelo.png?raw=true "Modelo")
+
+Para ejecutar el proyecto se necesita Rails 6.0.3 y ejecutar el comando
+$ bundle install
+
+Pata levantar el proyecto 
+$ bundle install
+
 
 Tarea NNode:
 
@@ -19,6 +29,3 @@ apuesta, no recupera nada.
 decir, Verde 2%, Rojo 49% y Negro 49%.
 * Al final del día, todos los jugadores reciben $10.000.
 
-* Modelo
-
-![Alt text](public/modelo.png?raw=true "Modelo")
