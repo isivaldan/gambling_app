@@ -14,7 +14,7 @@
   </thead>
 
   <tbody>
-    <% @rounds.each do |round| %>
+    <% @rounds.reverse_each do |round| %>
       <tr>
         <td><%= round.result_color %></td>
         <td><%= round.players.map(&:name).join(', ') %></td>

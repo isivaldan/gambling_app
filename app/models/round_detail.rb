@@ -45,8 +45,6 @@ class RoundDetail < ApplicationRecord
         elsif player.amount > 1000
           amount = player.amount * ((3 + rand(1..4)).to_f/100).to_f
           round_detail = RoundDetail.create(player_id:player.id,round_id:round.id,betted_money:amount.to_i,chosen_color:r.rand(0..2))
-          player.amount-= amount
-          
           player.save
         else
           puts "no se puede apostar"
@@ -60,8 +58,6 @@ class RoundDetail < ApplicationRecord
         elsif player.amount > 1000
           amount = player.amount * ((8 + rand(1..7)).to_f/100).to_f
           round_detail = RoundDetail.create(player_id:player.id,round_id:round.id,betted_money:amount.to_i,chosen_color:r.rand(0..2))
-          player.amount-= amount
-          
           player.save
         else
           puts "no se puede apostar"

@@ -26,12 +26,14 @@ class RoundsController < ApplicationController
   def create
     #@round = Round.new(round_params)
     #crear apuesta manualmente
+ 
+    if Player.check_amount == false
     @round = Round.random_bet
     @players =Player.all
 
     RoundDetail.create_round_detail(@players,@round)
     @round.total_amount_bet
-
+    
     respond_to do |format|
       if @round.save
         format.html { redirect_to @round, notice: 'Round was successfully created.' }
@@ -41,6 +43,10 @@ class RoundsController < ApplicationController
         format.json { render json: @round.errors, status: :unprocessable_entity }
       end
     end
+  else
+    puts "no se puede crear"
+  end
+
   end
 
   # PATCH/PUT /rounds/1
