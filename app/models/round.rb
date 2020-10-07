@@ -21,10 +21,11 @@ class Round < ApplicationRecord
   def total_amount_bet
     
     round_d=RoundDetail.where(round_id:self.id)
-    
+   
     round_d.each do|r|
+      player = Player.find(r.player_id)
       if r.chosen_color === self.result_color
-        player = Player.find(r.player_id)
+       
         if r.chosen_color==0 
           w =r.betted_money*15
           player.amount += w
