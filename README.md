@@ -4,18 +4,28 @@
 ![Alt text](public/modelo.png?raw=true "Modelo")
 
 
-
+[![-----------------------------------------------------](https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/colored.png)](#reglas)
 
 ## ➤ Para ejecutar el proyecto se necesita Rails 6.0.3 y ejecutar el comando
 
 ```ruby
 $ bundle install
 ```
+## ➤ Para correr Gema "whenever" donde estan las tareas que se ejecutan cada cierto tiempo
+
+```ruby
+$ whenever --update-crontab
+```
+
 ## ➤ Para levantar el proyecto
 
 ```ruby
 $ rails s 
 ```
+
+## ➤ Link de Heroku
+
+https://vast-springs-32161.herokuapp.com/
 
 [![-----------------------------------------------------](https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/colored.png)](#reglas)
 
