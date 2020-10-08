@@ -22,15 +22,13 @@ class RoundDetail < ApplicationRecord
     response = https.request(request)
     resp = JSON.parse response.read_body
     temp =[]
-    resp["data"].each do |r|
+    resp["data"].each_with_index do |r,index|
       temp.push(r["high_temp"]) 
+      break if index > 6 
     end
-    if temp[6]>24
-      return @hot_weather = true
-    else
-      return @hot_weather = false
-    end
-    
+   
+    @hot_weather = temp.any?{|t|t > 24}
+     
   end
   #Monto de las apuestas segun el clima 
   def self.create_round_detail(players,round)

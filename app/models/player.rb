@@ -2,6 +2,7 @@ class Player < ApplicationRecord
   has_many :round_details, dependent: :destroy
   has_many :rounds, :through => :round_details
   validates :name, presence: true
+  validates :amount, presence: true
   #monto diario que reciben los jugadores
   
   def self.daily_amount
@@ -17,7 +18,7 @@ class Player < ApplicationRecord
     @players = Player.all
     i=0
     @players.each do |player|
-      if player.amount> 0
+      if player.amount > 0
         i+=1
       end
     end
