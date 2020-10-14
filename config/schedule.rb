@@ -19,14 +19,11 @@
 
 # Learn more: http://github.com/javan/whenever
 every 3.minutes do
-  runner "Round.create_round"
+  runner 'Round.new.create_round'
 end
 
 every 1.days do
-  runner "Player.daily_amount"
+  rake 'programmed:daily'
 end
 
-every 1.days do
-  runner "RoundDetail.weather_api"
-end
 

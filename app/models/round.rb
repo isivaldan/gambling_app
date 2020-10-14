@@ -1,55 +1,48 @@
 class Round < ApplicationRecord
   has_many :round_details, dependent: :destroy
-  has_many :players, :through => :round_details
-  
-  
-  enum result_color: [:verde, :rojo, :negro]
+  has_many :players, through: :round_details
+  enum result_color: [:green, :red, :black]
   # Elije el color para la nueva ronda Verde 2% Rojo 49% y Negro 49%
-  def self.random_bet
-    r = Random.new
-    r = r.rand(1...100)
-    if r < 3
-      Round.create(result_color:0)
-    elsif r > 3 && r >= 52
-      Round.create(result_color:1)
+  def random_bet
+    random_percentage = Random.new
+    random_percentage = random_percentage.rand(1...100)
+    if random_percentage < 3
+      Round.create(result_color: 0)
+    elsif random_percentage > 3 && random_percentage >= 52
+      Round.create(result_color: 1)
     else
-      Round.create(result_color:2)
+      Round.create(result_color: 2)
     end
   end
-  
-  #Cantidad de dinero segun apuesta 
+
+  # Cantidad de dinero segun apuesta
   def total_amount_bet
-    
-    round_d=RoundDetail.where(round_id:self.id)
-   
-    round_d.each do|r|
-      player = Player.find(r.player_id)
-      if r.chosen_color === self.result_color
-       
-        if r.chosen_color==0 
-          w =r.betted_money*15
-          player.amount += w
-          player.save
+    round_details = RoundDetail.where(round_id: id)
+    round_details.each do |round_detail|
+      player = Player.find(round_detail.player_id)
+      if round_detail.chosen_color == result_color
+        if round_detail.chosen_color == 0
+          amount_won = round_detail.betted_money * 15
         else
-          player = Player.find(r.player_id)
-          w =r.betted_money*2
-          player.amount += w
-          player.save  
+          player = Player.find(round_detail.player_id)
+          amount_won = round_detail.betted_money * 2
         end
+        player.amount += amount_won
       else
-        player.amount -= r.betted_money
-        player.save
+        player.amount -= round_detail.betted_money
       end
+      player.save
     end
   end
-  #crear round con apuestas
-  def self.create_round
-    if Player.check_amount == false
-      @players =Player.all
-      @round = Round.random_bet
-      RoundDetail.create_round_detail(@players,@round)
-      @round.total_amount_bet
-    end
+
+  # crear round con apuestas
+  def create_round
+    return unless Player.new.check_amount == false
+
+    @round = Round.new
+    @round = @round.random_bet
+    @players =Player.all
+    RoundDetail.create_round_detail(@players, @round)
+    @round.total_amount_bet
   end
-  
 end
