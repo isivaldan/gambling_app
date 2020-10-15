@@ -17,14 +17,13 @@ class Round < ApplicationRecord
 
   # Cantidad de dinero segun apuesta
   def total_amount_bet
-    round_details = RoundDetail.where(round_id: id)
+
     round_details.each do |round_detail|
-      player = Player.find(round_detail.player_id)
+      player = round_detail.player
       if round_detail.chosen_color == result_color
         if round_detail.chosen_color == 0
           amount_won = round_detail.betted_money * 15
         else
-          player = Player.find(round_detail.player_id)
           amount_won = round_detail.betted_money * 2
         end
         player.amount += amount_won
@@ -37,11 +36,11 @@ class Round < ApplicationRecord
 
   # crear round con apuestas
   def create_round
-    return unless Player.new.check_amount == false
+    return unless Player.new.check_amount?
 
     @round = Round.new
     @round = @round.random_bet
-    @players =Player.all
+    @players = Player.all
     RoundDetail.create_round_detail(@players, @round)
     @round.total_amount_bet
   end

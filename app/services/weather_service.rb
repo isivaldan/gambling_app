@@ -4,9 +4,6 @@ class WeatherService
   require 'net/http'
   require 'json'
   # llamado a la API Weather Bit
-  attr_reader :hot_weather
-  @hot_weather = false
-
   def weather_api
     url = URI('https://api.weatherbit.io/v2.0/forecast/daily?city=Santiago&key=a01895cdf39141f9a8a77e66aafbcca2')
     https = Net::HTTP.new(url.host, url.port)
@@ -23,6 +20,6 @@ class WeatherService
       temp.push(r['high_temp'])
       break if index > 6
     end
-    @hot_weather = temp.any? { |t| t > 24 }
+    Weather.create(hot_weather: temp.any? { |t| t > 24 })
   end
 end

@@ -19,11 +19,13 @@
 
 # Learn more: http://github.com/javan/whenever
 every 3.minutes do
-  runner 'Round.new.create_round'
+  rake 'programmed:minutes'
 end
 
 every 1.days do
   rake 'programmed:daily'
 end
 
-
+every 7.days do
+  rake 'programmed:weekly'
+end

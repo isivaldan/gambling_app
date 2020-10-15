@@ -3,6 +3,8 @@ class Player < ApplicationRecord
   has_many :rounds, through: :round_details
   validates :name, presence: true
   validates :amount, presence: true
+  # scope para chequear si los jugadores no tienen dinero
+  scope :with_money, -> { where('amount > 0') }
   # monto diario que reciben los jugadores
   after_initialize do
     self.amount ||= 10_000
@@ -14,14 +16,8 @@ class Player < ApplicationRecord
       player.save
     end
   end
-  def check_amount
-    @players = Player.all
-    i = 0
-    @players.each do |player|
-      if player.amount.positive?
-        i += 1
-      end
-    end
-    i == 0
+  
+  def check_amount?
+    Player.with_money.count.positive?
   end
 end
