@@ -25,7 +25,8 @@ class RoundsController < ApplicationController
   # POST /rounds.json
   def create
     # crear apuesta manualmente
-    return unless Player.new.check_amount == false
+    return unless Player.new.check_amount?
+
     @round = Round.new
     @round = @round.random_bet
     @players =Player.all
