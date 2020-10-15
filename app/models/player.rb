@@ -17,7 +17,7 @@ class Player < ApplicationRecord
     end
   end
   
-  def check_amount?
+  def self.check_amount?
     Player.with_money.count.positive?
   end
 end
