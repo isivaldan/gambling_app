@@ -36,11 +36,11 @@ class Round < ApplicationRecord
 
   # crear round con apuestas
   def create_round
-    return unless Player.new.check_amount?
+    return unless Player.check_amount?
 
     @round = Round.new
     @round = @round.random_bet
-    @players = Player.all
+    @players = Player.with_money
     RoundDetail.create_round_detail(@players, @round)
     @round.total_amount_bet
   end

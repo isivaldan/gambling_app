@@ -8,7 +8,7 @@ class RoundDetail < ApplicationRecord
     players.each do |player|
       random_color = Random.new
       weather_check = Weather.last.hot_weather
-      if  weather_check == true
+      if  weather_check
         if player.amount <= 1000 && player.amount != 0
           RoundDetail.create(player_id: player.id, round_id: round.id, betted_money: player.amount, chosen_color: random_color.rand(0..2))
           player.amount = 0
